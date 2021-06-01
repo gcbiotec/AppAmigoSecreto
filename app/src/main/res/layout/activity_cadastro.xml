@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    tools:context=".com.example.appamigosecreto.CadastroActivity">
+
+    <data>
+        <variable
+            name = "viewModel"
+            type =  "com.example.appamigosecreto.viewModel.CadastroViewModel"/>
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/nomeTV"
+            android:layout_width="120dp"
+            android:layout_height="39dp"
+            android:layout_marginStart="145dp"
+            android:layout_marginTop="124dp"
+            android:layout_marginEnd="146dp"
+            android:hint="Nome do Participante"
+            android:text="@={viewModel.nome}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+        android:id="@+id/emailET"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="100dp"
+        android:layout_marginTop="72dp"
+        android:layout_marginEnd="101dp"
+        android:ems="10"
+        android:hint="email do participante"
+        android:text="@={viewModel.email}"
+        android:inputType="textEmailAddress"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/nomeTV" />
+
+    <EditText
+        android:id="@+id/telefoneTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="100dp"
+        android:layout_marginTop="70dp"
+        android:layout_marginEnd="101dp"
+        android:ems="10"
+        android:hint="Telefone do Participante"
+        android:inputType="phone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/emailET" />
+
+        <Button
+            android:id="@+id/button2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Cadastrar!"
+            tools:layout_editor_absoluteX="149dp"
+            tools:layout_editor_absoluteY="465dp" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    </layout>
