@@ -8,10 +8,13 @@ import android.os.Bundle
 import com.example.appamigosecreto.viewModel.CadastroViewModel
 import android.view.View
 import androidx.databinding.DataBindingUtil
+import com.example.appamigosecreto.databinding.ActivityCadastroBinding
+import com.example.appamigosecreto.repository.ParticipanteRepository
+import com.example.appamigosecreto.viewModel.ParticipanteViewModelFactory
 
 class CadastroActivity : AppCompatActivity() {
 
-    private val cadastroViewModel : CadastroViewModel by lazy{
+    private val cadastroViewModel : CadastroViewModel by lazy {
         CadastroViewModel()
     }
 
@@ -19,11 +22,18 @@ class CadastroActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         val binding: ActivityCadastroBinding =
-                DataBindingUtil.setContentView(this, R.layout.activity_cadastro)
+            DataBindingUtil.setContentView(this, R.layout.activity_cadastro)
 
-        binding.viewmodel = cadastroViewModel
+        binding.viewModel = cadastroViewModel
+
+        cadastrarParticipante()
     }
-    fun cadastrar(view:View){
+//        cadastroViewModel.nome
+//        cadastroViewModel.email
+//        cadastroViewModel.email
 
+    fun cadastrarParticipante(view:View){
+
+        cadastroViewModel.save()
     }
 }
