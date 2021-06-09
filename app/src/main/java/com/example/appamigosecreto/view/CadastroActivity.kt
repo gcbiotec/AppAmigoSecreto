@@ -1,21 +1,22 @@
 package com.example.appamigosecreto.view
 
-import android.app.Activity
 import com.example.appamigosecreto.R
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.example.appamigosecreto.viewModel.CadastroViewModel
 import android.view.View
+import com.example.appamigosecreto.viewModel.CadastroViewModel
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.ViewModelProvider
+import com.example.appamigosecreto.AppAmigoSecreto
 import com.example.appamigosecreto.databinding.ActivityCadastroBinding
 import com.example.appamigosecreto.repository.ParticipanteRepository
 import com.example.appamigosecreto.viewModel.ParticipanteViewModelFactory
 
 class CadastroActivity : AppCompatActivity() {
 
-    private val cadastroViewModel : CadastroViewModel by lazy {
-        CadastroViewModel()
+    private val cadastroViewModel : CadastroViewModel by viewModels {
+        ParticipanteViewModelFactory(application as AppAmigoSecreto)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -25,15 +26,12 @@ class CadastroActivity : AppCompatActivity() {
             DataBindingUtil.setContentView(this, R.layout.activity_cadastro)
 
         binding.viewModel = cadastroViewModel
-
-        cadastrarParticipante()
     }
-//        cadastroViewModel.nome
-//        cadastroViewModel.email
-//        cadastroViewModel.email
 
-    fun cadastrarParticipante(view:View){
+    fun salvarParticipante(view:View){
 
-        cadastroViewModel.save()
+        this.cadastroViewModel.save()
+        this.onBackPressed()
     }
+
 }

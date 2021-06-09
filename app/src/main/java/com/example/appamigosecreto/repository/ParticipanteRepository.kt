@@ -1,16 +1,21 @@
 package com.example.appamigosecreto.repository
 
+import androidx.annotation.WorkerThread
+import com.example.appamigosecreto.infra.database.ParticipanteDAO
 import com.example.appamigosecreto.model.Participante
 
-class ParticipanteRepository {
+class ParticipanteRepository(private val participanteDAO: ParticipanteDAO){
 
-    fun getParticipantes() : List<Participante>{
+    var selectedParticipante: Participante? = null
 
-        val participante1 = Participante("Gabriel", "gcbiotec@gmail.com", "4565-45654")
-        val participante2 = Participante("Ronaldo", "rfilho@gmail.com", "4565-456887")
-        val participante3 = Participante("Isadora", "isa@gmail.com", "45654-7897")
+    fun getParticipantes() = participanteDAO.getAllParticipantes()
 
-        return listOf(participante1,participante2,participante3)
+    @WorkerThread
+    suspend fun save(participante: Participante){
+        participanteDAO.save(participante)
     }
 
+    suspend fun deleteParticipante(participante: Participante){
+        this.participanteDAO.delete(participante)
+    }
 }

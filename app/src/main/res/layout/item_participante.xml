@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="accountProjection"
+            type="com.example.AppAmigoSecreto.model.projection.ParticipanteProjection" />
+
+        <variable
+            name="cardListener"
+            type="com.example.AppAmigoSecreto.utils.CardListener" />
+    </data>
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:layout_width="match_parent"
+        android:onClick="@{() -> cardListener.onClick(participanteProjection.participante)}"
+        android:onLongClick="@{() -> cardListener.onLongClick(participanteProjection.participante)}">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_height="match_parent"
+            android:layout_width="match_parent">
+
+        <TextView
+            android:id="@+id/nameTV"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="16dp"
+            android:layout_width="wrap_content"
+            android:text="@{accountProjection.participante.nome}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/typeTV"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="36dp"
+            android:layout_width="wrap_content"
+            android:text="@{accountProjection.account.accountType.type}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/nameTV" />
+
+        <TextView
+            android:id="@+id/balanceTV"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_width="wrap_content"
+            android:text="@{@string/balance_format(accountProjection.account.balance)}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.741"
+            app:layout_constraintStart_toEndOf="@+id/nameTV"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/responsibleTV"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="68dp"
+            android:layout_marginTop="36dp"
+            android:layout_width="wrap_content"
+            android:text="@{accountProjection.responsible.name}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/balanceTV" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.card.MaterialCardView>
+</layout>
